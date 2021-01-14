@@ -1,15 +1,18 @@
 import SignUp from "./SignUp";
+import { AuthProvider } from "../context/AuthContext";
 
 function App() {
   return (
-    <div className="container">
-      <h1>Hello World!</h1>
-      <div className="row">
-        <div className="col-sm-6">
-          <SignUp />
+    <AuthProvider>
+      <div className="container">
+        <h1>Hello World!</h1>
+        <div className="row">
+          <div className="col-sm-6">
+            <SignUp />
+          </div>
         </div>
       </div>
-    </div>
+    </AuthProvider>
   );
 }
 
