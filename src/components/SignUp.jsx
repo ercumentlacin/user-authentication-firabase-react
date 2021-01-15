@@ -9,21 +9,31 @@ const SignUp = () => {
   const userPassword = useRef();
   const signup = useAuth();
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
       setError("");
+      setLoading(true);
       await signup(userMail.current.value, userPassword.current.value);
     } catch {
       setError("Uyelik olusturulurken bir hata meydana geldi");
     }
+    setLoading(false);
   };
 
   return (
     <>
-      <form>
+      <form onSubmit={handleSubmit}>
+        <h3 className="mb-3 text-center">Üye Olun</h3>
+        {error && (
+          <div class="alert alert-danger" role="alert">
+            {error}
+          </div>
+        )}
+        <hr />
         {/* User Name and User Surname */}
         <div className="mb-3 d-flex gap-3">
           <label for="userName" className="form-label d-none"></label>
@@ -125,7 +135,7 @@ const SignUp = () => {
         </div>
         {/* Submit */}
         <div className="d-grid">
-          <button type="submit" className="btn btn-primary">
+          <button disabled={loading} type="submit" className="btn btn-primary">
             Üye Ol
           </button>
         </div>
