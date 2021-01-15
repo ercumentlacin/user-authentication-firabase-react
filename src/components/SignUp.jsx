@@ -1,5 +1,6 @@
 import React, { useRef, useState } from "react";
 import { useAuth } from "../context/AuthContext";
+import { useHistory } from "react-router-dom";
 
 const SignUp = () => {
   const userName = useRef();
@@ -10,6 +11,7 @@ const SignUp = () => {
   const signup = useAuth();
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  const history = useHistory();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -18,6 +20,7 @@ const SignUp = () => {
       setError("");
       setLoading(true);
       await signup(userMail.current.value, userPassword.current.value);
+      history.push("/");
     } catch {
       setError("Uyelik olusturulurken bir hata meydana geldi");
     }
