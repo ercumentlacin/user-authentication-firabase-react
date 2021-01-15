@@ -1,23 +1,24 @@
 import React, { useRef, useState } from "react";
 import { useAuth } from "../context/AuthContext";
-import { useHistory, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const ForgotPassword = () => {
   const userMail = useRef();
-  const login = useAuth();
+  const { resetPassword } = useAuth();
   const [error, setError] = useState("");
+  const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(false);
-  const history = useHistory();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      setMessage("");
       setError("");
       setLoading(true);
-      // await login(userMail.current.value, userPassword.current.value);
-      history.push("/");
+      await resetPassword(userMail.current.value);
+      setMessage("Mailinizi kontrol edeniniz");
     } catch {
-      setError("Giriş yaparken bir hata meydana geldi");
+      setError("Şifre sıfırlanırken bir hata meydana geldi");
     }
     setLoading(false);
   };
@@ -28,6 +29,11 @@ const ForgotPassword = () => {
         {error.length > 5 && (
           <div className="alert alert-danger" role="alert">
             {error}
+          </div>
+        )}
+        {message && (
+          <div className="alert alert-success" role="alert">
+            {message}
           </div>
         )}
         <hr />

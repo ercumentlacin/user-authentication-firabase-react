@@ -11,6 +11,7 @@
 # production
 /build
 src.rar
+*.env
 
 # misc
 .DS_Store
