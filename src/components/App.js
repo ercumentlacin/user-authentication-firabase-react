@@ -13,7 +13,7 @@ function App() {
             <Switch>
               {/* Dashboard page */}
               <Route exact path="/">
-                <div className="col-sm-6 offset-sm-3">
+                <div className="col-sm-6 offset-sm-3 text-center">
                   <Dashboard />
                 </div>
               </Route>

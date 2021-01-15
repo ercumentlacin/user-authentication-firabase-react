@@ -27,14 +27,14 @@ const Login = () => {
       <form onSubmit={handleSubmit}>
         <h3 className="mb-3 text-center">Üye Girişi</h3>
         {error.length > 5 && (
-          <div class="alert alert-danger" role="alert">
+          <div className="alert alert-danger" role="alert">
             {error}
           </div>
         )}
         <hr />
         {/* User Mail */}
         <div className="mb-3">
-          <label for="userMail" className="form-label d-none"></label>
+          <label htmlFor="userMail" className="form-label d-none"></label>
           <input
             ref={userMail}
             placeholder="E-mail adresiniz"
@@ -48,7 +48,7 @@ const Login = () => {
         {/* User Password */}
         <div className="mb-3">
           <label
-            for="exampleInputPassword1"
+            htmlFor="exampleInputPassword1"
             className="form-label d-none"
           ></label>
           <input

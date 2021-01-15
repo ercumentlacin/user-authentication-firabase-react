@@ -8,18 +8,19 @@ const SignUp = () => {
   const userMail = useRef();
   const userPhone = useRef();
   const userPassword = useRef();
-  const signup = useAuth();
+  const { signup } = useAuth();
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const history = useHistory();
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
 
     try {
       setError("");
       setLoading(true);
-      await signup(userMail.current.value, userPassword.current.value);
+      signup(userMail.current.value, userPassword.current.value);
+      console.log(signup);
       history.push("/");
     } catch {
       setError("Uyelik olusturulurken bir hata meydana geldi");
@@ -32,14 +33,14 @@ const SignUp = () => {
       <form onSubmit={handleSubmit}>
         <h3 className="mb-3 text-center">Üye Olun</h3>
         {error.length > 5 && (
-          <div class="alert alert-danger" role="alert">
+          <div className="alert alert-danger" role="alert">
             {error}
           </div>
         )}
         <hr />
         {/* User Name and User Surname */}
         <div className="mb-3 d-flex gap-3">
-          <label for="userName" className="form-label d-none"></label>
+          <label htmlFor="userName" className="form-label d-none"></label>
           <input
             ref={userName}
             required
@@ -48,7 +49,7 @@ const SignUp = () => {
             id="userName"
             placeholder="Adınız"
           />
-          <label for="userSurname" className="form-label d-none"></label>
+          <label htmlFor="userSurname" className="form-label d-none"></label>
           <input
             ref={userSurname}
             required
@@ -60,7 +61,7 @@ const SignUp = () => {
         </div>
         {/* User Mail */}
         <div className="mb-3">
-          <label for="userMail" className="form-label d-none"></label>
+          <label htmlFor="userMail" className="form-label d-none"></label>
           <input
             ref={userMail}
             placeholder="E-mail adresiniz"
@@ -73,7 +74,7 @@ const SignUp = () => {
         </div>
         {/* User Phone Number */}
         <div className="mb-3">
-          <label for="userPhone" className="form-label d-none"></label>
+          <label htmlFor="userPhone" className="form-label d-none"></label>
           <input
             ref={userPhone}
             placeholder="Telefon Numaranız"
@@ -85,8 +86,11 @@ const SignUp = () => {
           />
         </div>
         {/* User Sex */}
-        <select class="form-select mb-3" aria-label="Default select example">
-          <option selected>Cinsiyetiniz</option>
+        <select
+          className="form-select mb-3"
+          aria-label="Default select example"
+        >
+          <option defaultValue>Cinsiyetiniz</option>
           <option value="male">Erkek</option>
           <option value="hidden">Belirtmek İstemiyorum</option>
           <option value="female">Kadın</option>
@@ -94,7 +98,7 @@ const SignUp = () => {
         {/* User Password */}
         <div className="mb-3">
           <label
-            for="exampleInputPassword1"
+            htmlFor="exampleInputPassword1"
             className="form-label d-none"
           ></label>
           <input
@@ -109,7 +113,7 @@ const SignUp = () => {
         {/* campaigns */}
         <div className="mb-3 form-check">
           <input type="checkbox" className="form-check-input" id="campaigns" />
-          <label className="form-check-label" for="campaigns">
+          <label className="form-check-label" htmlFor="campaigns">
             <p>
               <strong>
                 Kampanyalardan haberdar olmak için Aydınlatma Metni kapsamında
@@ -127,7 +131,7 @@ const SignUp = () => {
             className="form-check-input"
             id="Conditions"
           />
-          <label className="form-check-label" for="Conditions">
+          <label className="form-check-label" htmlFor="Conditions">
             <p>
               <strong>
                 Üyelik koşullarını ve kişisel verilerimin korunmasını kabul
