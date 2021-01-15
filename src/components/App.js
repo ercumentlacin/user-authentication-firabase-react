@@ -3,6 +3,8 @@ import { AuthProvider } from "../context/AuthContext";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Dashboard from "./Dashboard";
 import Login from "./Login";
+import ForgotPassword from "./ForgotPassword";
+import PrivateRoute from "./PrivateRoute";
 
 function App() {
   return (
@@ -12,11 +14,7 @@ function App() {
           <AuthProvider>
             <Switch>
               {/* Dashboard page */}
-              <Route exact path="/">
-                <div className="col-sm-6 offset-sm-3 text-center">
-                  <Dashboard />
-                </div>
-              </Route>
+              <PrivateRoute exact path="/" component={Dashboard} />
               {/* Register and Login page */}
               <Route path="/login">
                 <div className="col-sm-6">
@@ -26,6 +24,7 @@ function App() {
                   <SignUp />
                 </div>
               </Route>
+              <Route to="/forgot-password" component={ForgotPassword} />
             </Switch>
           </AuthProvider>
         </Router>

@@ -19,7 +19,7 @@ const Dashboard = () => {
   };
 
   return (
-    <>
+    <div className="col-sm-6 offset-sm-3 text-center">
       <h3 className="mb-3 text-center">Profil</h3>
       {error.length > 5 && (
         <div className="alert alert-danger" role="alert">
@@ -48,7 +48,7 @@ const Dashboard = () => {
           Çıkış Yap
         </button>
       </div>
-    </>
+    </div>
   );
 };
 
