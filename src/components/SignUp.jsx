@@ -28,7 +28,7 @@ const SignUp = () => {
     <>
       <form onSubmit={handleSubmit}>
         <h3 className="mb-3 text-center">Üye Olun</h3>
-        {error && (
+        {error.length > 5 && (
           <div class="alert alert-danger" role="alert">
             {error}
           </div>
